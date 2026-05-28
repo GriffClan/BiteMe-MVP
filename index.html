@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#fff8ef" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Bite Me" />
+    <title>Bite Me</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="assets/app-icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css?v=6" />
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="brand">
+        <div>
+          <h1>Bite Me</h1>
+          <p>Hold. Wait. Regret.</p>
+        </div>
+        <span>5-round nerve test</span>
+      </header>
+
+      <section class="scorebar" aria-label="Score">
+        <div>
+          <span class="label">Last</span>
+          <strong id="score">0</strong>
+        </div>
+        <div>
+          <span class="label">Best Run</span>
+          <strong id="best">0</strong>
+        </div>
+        <div>
+          <span class="label">Total</span>
+          <strong id="total">0</strong>
+        </div>
+        <div>
+          <span class="label">Gap</span>
+          <strong id="gap">--</strong>
+        </div>
+        <div>
+          <span class="label">Combo</span>
+          <strong id="combo">x1</strong>
+        </div>
+        <div>
+          <span class="label">Round</span>
+          <strong id="round">1/5</strong>
+        </div>
+      </section>
+
+      <section class="stage" aria-label="Game area">
+        <div class="stage-inner" id="stageInner">
+          <div class="sprite-face hidden" id="spriteFace" aria-hidden="true"></div>
+          <div class="face human" id="face">
+            <div class="nose"></div>
+            <div class="eyes">
+              <span></span>
+              <span></span>
+            </div>
+            <div class="mouth" id="mouth">
+              <div class="upper-teeth"></div>
+              <div class="tongue"></div>
+              <div class="lower-teeth"></div>
+            </div>
+          </div>
+          <div class="touch-target" id="touchTarget" role="button" tabindex="0" aria-label="Touch and hold the mouth"></div>
+          <div class="feedback hidden" id="feedback">Perfect</div>
+          <div class="ready-card" id="readyCard">
+            <span class="label">Ready</span>
+            <strong id="readyTitle">Choose a mouth</strong>
+            <p id="readyCopy">Pick a creature, then touch and hold the mouth. Release before it bites.</p>
+            <button id="startRunButton" type="button">Start Run</button>
+          </div>
+          <div class="results hidden" id="results" role="dialog" aria-labelledby="resultTitle" aria-modal="true">
+            <span class="label">Run Complete</span>
+            <strong class="result-badge" id="resultBadge">New Best</strong>
+            <h1 id="resultTitle">Cautious</h1>
+            <p class="result-summary" id="resultSummary">You survived the run.</p>
+            <div class="result-grid">
+              <div>
+                <span class="label">Total</span>
+                <strong id="resultTotal">0</strong>
+              </div>
+              <div>
+                <span class="label">Best Gap</span>
+                <strong id="resultGap">--</strong>
+              </div>
+              <div>
+                <span class="label">Bites</span>
+                <strong id="resultBites">0</strong>
+              </div>
+              <div>
+                <span class="label">Best Combo</span>
+                <strong id="resultCombo">x1</strong>
+              </div>
+            </div>
+            <div class="result-progress">
+              <span id="resultProgressLabel">Next unlock</span>
+              <div class="unlock-meter" aria-hidden="true"><span id="resultUnlockMeter"></span></div>
+            </div>
+            <p class="result-unlock" id="resultUnlock">Next unlock: Vampire at 2500</p>
+            <button id="playAgainButton" type="button">Play Again</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="controls">
+        <div class="risk" id="risk">Risk: calm</div>
+        <div class="unlock-status" id="unlockStatus">Next unlock: Vampire at 2500</div>
+        <div class="unlock-meter" aria-hidden="true"><span id="unlockMeter"></span></div>
+        <button id="soundButton" type="button" class="sound-toggle" aria-pressed="false">Sound On</button>
+        <div class="creature-panel" aria-live="polite">
+          <div>
+            <span class="label">Current Mouth</span>
+            <strong id="creatureName">Human</strong>
+          </div>
+          <p id="creatureNote">Readable, but lies with little blinks.</p>
+          <div class="creature-stats">
+            <span id="creatureSpeed">Speed: Normal</span>
+            <span id="creatureReward">Reward: 1x</span>
+          </div>
+        </div>
+        <div class="styles" aria-label="Mouth style">
+          <button class="style-option active" type="button" data-avatar="human">Human</button>
+          <button class="style-option" type="button" data-avatar="wolf">Wolf</button>
+          <button class="style-option" type="button" data-avatar="shark">Shark</button>
+          <button class="style-option" type="button" data-avatar="vampire">Vampire</button>
+          <button class="style-option" type="button" data-avatar="croc">Croc</button>
+          <button class="style-option" type="button" data-avatar="alien">Alien</button>
+        </div>
+        <p id="message">Touch and hold the mouth. Lift your finger before the bite.</p>
+        <button id="resetButton" type="button" class="secondary">Reset</button>
+      </section>
+    </main>
+
+    <script src="game.js?v=6"></script>
+  </body>
+</html>
