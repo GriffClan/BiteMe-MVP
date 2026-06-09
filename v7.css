@@ -1,0 +1,83 @@
+.sprite-face {
+  transition: transform 150ms ease, filter 150ms ease;
+  transform-origin: center 62%;
+}
+.stage-inner.tell-breath .sprite-face { transform: rotateX(4deg) translateY(3px) scale(1.022); }
+.stage-inner.tell-swallow .sprite-face { transform: rotateX(4deg) translateY(7px) scaleX(0.992) scaleY(1.018); }
+.stage-inner.tell-jaw .sprite-face {
+  transform: rotateX(5deg) translateY(5px) scale(1.035);
+  filter: drop-shadow(0 29px 46px rgba(34, 26, 24, 0.3));
+}
+.stage-inner.tell-blink .sprite-face { transform: rotateX(4deg) translateY(1px) scaleX(1.008) scaleY(0.99); }
+.play-guide {
+  position: absolute;
+  top: 4%;
+  left: 50%;
+  z-index: 8;
+  width: max-content;
+  max-width: 88%;
+  display: grid;
+  gap: 2px;
+  padding: 9px 13px;
+  border-radius: 8px;
+  background: rgba(29, 29, 36, 0.88);
+  box-shadow: 0 12px 30px rgba(29, 29, 36, 0.2);
+  color: #fff;
+  text-align: center;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.play-guide strong { font-size: 0.9rem; line-height: 1.1; }
+.play-guide span { font-size: 0.76rem; font-weight: 750; opacity: 0.82; }
+.play-guide.hidden { display: none; }
+.ready-card {
+  inset: 5%;
+  align-content: center;
+  gap: 11px;
+  padding: 20px;
+}
+.ready-card strong { font-size: clamp(1.35rem, 6vw, 2.15rem); line-height: 1; }
+.ready-card p { margin: 0; color: var(--muted); font-size: 0.92rem; font-weight: 760; line-height: 1.25; }
+.how-to {
+  display: grid;
+  gap: 8px;
+  margin: 2px 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: steps;
+}
+.how-to li {
+  position: relative;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  padding-left: 42px;
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.2;
+  counter-increment: steps;
+}
+.how-to li::before {
+  content: counter(steps);
+  position: absolute;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 950;
+}
+.how-to b { margin-right: 4px; }
+.ready-card button { min-height: 48px; }
+@media (max-width: 520px) {
+  .ready-card { inset: 3%; padding: 14px; gap: 8px; }
+  .ready-card p { font-size: 0.84rem; }
+  .how-to { gap: 6px; }
+  .how-to li { min-height: 28px; padding-left: 36px; font-size: 0.84rem; }
+  .how-to li::before { width: 27px; height: 27px; }
+}
