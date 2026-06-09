@@ -9,7 +9,7 @@
     <title>Bite Me</title>
     <link rel="manifest" href="manifest.webmanifest" />
     <link rel="icon" href="assets/app-icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css?v=6" />
+    <link rel="stylesheet" href="styles.css?v=7" />
   </head>
   <body>
     <main class="game-shell">
@@ -64,12 +64,21 @@
             </div>
           </div>
           <div class="touch-target" id="touchTarget" role="button" tabindex="0" aria-label="Touch and hold the mouth"></div>
+          <div class="play-guide hidden" id="playGuide" aria-live="polite">
+            <strong>Press and hold the mouth</strong>
+            <span>Lift your finger before it bites</span>
+          </div>
           <div class="feedback hidden" id="feedback">Perfect</div>
           <div class="ready-card" id="readyCard">
-            <span class="label">Ready</span>
+            <span class="label">How To Play</span>
             <strong id="readyTitle">Choose a mouth</strong>
-            <p id="readyCopy">Pick a creature, then touch and hold the mouth. Release before it bites.</p>
-            <button id="startRunButton" type="button">Start Run</button>
+            <ol class="how-to">
+              <li><b>Choose</b> an unlocked character.</li>
+              <li><b>Press and hold</b> directly on its mouth.</li>
+              <li><b>Lift your finger</b> before the bite.</li>
+            </ol>
+            <p id="readyCopy">Watch the eyes and jaw. Some movements are real clues and some are fakes.</p>
+            <button id="startRunButton" type="button">Got It - Start Run</button>
           </div>
           <div class="results hidden" id="results" role="dialog" aria-labelledby="resultTitle" aria-modal="true">
             <span class="label">Run Complete</span>
@@ -133,6 +142,6 @@
       </section>
     </main>
 
-    <script src="game.js?v=6"></script>
+    <script src="game.js?v=7"></script>
   </body>
 </html>

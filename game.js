@@ -21,6 +21,7 @@ const creatureRewardEl = document.querySelector("#creatureReward");
 const styleButtons = document.querySelectorAll(".style-option");
 const stageInner = document.querySelector("#stageInner");
 const touchTarget = document.querySelector("#touchTarget");
+const playGuide = document.querySelector("#playGuide");
 const spriteFace = document.querySelector("#spriteFace");
 const face = document.querySelector("#face");
 const mouth = document.querySelector("#mouth");
@@ -53,10 +54,10 @@ const audioSources = {
 };
 
 const spriteAnimations = {
-  idle: [0, 1, 0, 1],
-  blink: [0, 3, 3, 0],
-  jaw: [0, 5, 0],
-  windup: [2, 6, 5],
+  idle: [0, 1, 0],
+  blink: [0, 3, 3, 3, 0],
+  jaw: [0, 5, 5, 0],
+  windup: [2, 6, 6, 5, 0],
   chomp: [6, 8, 7, 7],
 };
 
@@ -64,7 +65,7 @@ const avatars = {
   human: {
     label: "Human",
     sprite: true,
-    atlas: "assets/human/human-3x3-clean.png?v=6",
+    atlas: "assets/human/human-3x3-clean.png?v=7",
     unlockAt: 0,
     multiplier: 1,
     floor: 2200,
@@ -78,7 +79,7 @@ const avatars = {
   wolf: {
     label: "Wolf",
     sprite: true,
-    atlas: "assets/wolf/wolf-3x3-clean.png?v=6",
+    atlas: "assets/wolf/wolf-3x3-clean.png?v=7",
     unlockAt: 1800,
     multiplier: 1.1,
     floor: 1750,
@@ -92,7 +93,7 @@ const avatars = {
   shark: {
     label: "Shark",
     sprite: true,
-    atlas: "assets/shark/shark-3x3-clean.png?v=6",
+    atlas: "assets/shark/shark-3x3-clean.png?v=7",
     unlockAt: 3600,
     multiplier: 1.2,
     floor: 1350,
@@ -210,6 +211,7 @@ function startHold(event) {
   state.startTime = performance.now();
   state.biteAt = state.startTime + delay;
 
+  hidePlayGuide();
   messageEl.textContent = "Lift your finger before the bite.";
   gapEl.textContent = "--";
   setRisk("calm");
@@ -306,6 +308,7 @@ function finishRound({ escaped, points, gapMs }) {
     state.round += 1;
     roundEl.textContent = roundText();
     state.ready = true;
+    showPlayGuide(`Round ${state.round}: hold the mouth`, "Lift before the bite");
     if (escaped) setRisk("calm");
     setSpriteFrame("idle");
     if (avatars[state.avatar].sprite) startIdleSpriteLoop();
@@ -501,17 +504,21 @@ function scheduleTells(delay) {
 function pulseTell(name) {
   if (!state.holding) return;
   face.classList.add(name);
+  stageInner.classList.add(name);
   stopIdleSpriteLoop();
-  playSpriteAnimation(spriteAnimationForTell(name), 95, { resumeIdle: true });
+  playSpriteAnimation(spriteAnimationForTell(name), 125, { resumeIdle: true });
   playSound(name === "tell-blink" ? "blink" : "tell");
+  const duration = 330 + Math.random() * 160;
   window.setTimeout(() => {
     face.classList.remove(name);
-  }, 120 + Math.random() * 210);
+    stageInner.classList.remove(name);
+  }, duration);
 }
 
 function clearTells() {
   state.tellTimers.forEach((timer) => window.clearTimeout(timer));
   state.tellTimers = [];
+  stageInner.classList.remove("tell-breath", "tell-swallow", "tell-jaw", "tell-blink");
 }
 
 function tick() {
@@ -574,6 +581,7 @@ function startNewRun({ clearBest = false } = {}) {
   setSpriteFrame("idle");
   updateUnlocks();
   updateUnlockStatus();
+  hidePlayGuide();
   showReadyCard();
 }
 
@@ -582,6 +590,7 @@ function endRun() {
   state.runLocked = false;
   state.hasStartedRun = false;
   state.ready = false;
+  hidePlayGuide();
   setRisk("calm");
   stopSpriteAnimation();
   stopIdleSpriteLoop();
@@ -817,9 +826,10 @@ function updateResultProgress() {
 function showReadyCard() {
   if (!readyCard) return;
   const avatar = avatars[state.avatar];
+  hidePlayGuide();
   readyCard.classList.remove("hidden");
   readyTitle.textContent = `${avatar.label} run`;
-  readyCopy.textContent = `${avatar.message} Touch the mouth when you're ready.`;
+  readyCopy.textContent = `${avatar.message} Watch the eyes and jaw: some movements are clues and some are fakes.`;
   touchTarget.setAttribute("aria-label", `Start ${avatar.label} run`);
 }
 
@@ -827,6 +837,18 @@ function hideReadyCard() {
   if (!readyCard) return;
   readyCard.classList.add("hidden");
   touchTarget.setAttribute("aria-label", "Touch and hold the mouth");
+}
+
+function showPlayGuide(title = "Press and hold the mouth", detail = "Lift your finger before it bites") {
+  if (!playGuide) return;
+  playGuide.querySelector("strong").textContent = title;
+  playGuide.querySelector("span").textContent = detail;
+  playGuide.classList.remove("hidden");
+}
+
+function hidePlayGuide() {
+  if (!playGuide) return;
+  playGuide.classList.add("hidden");
 }
 
 function nextUnlock() {
@@ -857,6 +879,7 @@ resetButton.addEventListener("click", resetGame);
 playAgainButton.addEventListener("click", () => startNewRun());
 startRunButton.addEventListener("click", () => {
   hideReadyCard();
+  showPlayGuide();
   messageEl.textContent = "Touch and hold the mouth. Lift before it bites.";
   touchTarget.focus({ preventScroll: true });
 });
