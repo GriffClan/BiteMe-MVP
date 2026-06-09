@@ -1,4 +1,4 @@
-const CACHE_NAME = "bite-me-v6";
+const CACHE_NAME = "bite-me-v7";
 const CACHE_FILES = [
   "./",
   "./index.html",
