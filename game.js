@@ -56,8 +56,8 @@ const audioSources = {
 const spriteAnimations = {
   idle: [0, 1, 0],
   blink: [0, 3, 3, 3, 0],
-  jaw: [0, 5, 5, 0],
-  windup: [2, 6, 6, 5, 0],
+  jaw: [0, 6, 6, 0],
+  windup: [2, 6, 6, 0],
   chomp: [6, 8, 7, 7],
 };
 
@@ -106,6 +106,8 @@ const avatars = {
   },
   vampire: {
     label: "Vampire",
+    sprite: true,
+    atlas: "assets/vampire/vampire-3x3-hd.png?v=10",
     unlockAt: 5600,
     multiplier: 1.35,
     floor: 1600,
@@ -114,10 +116,12 @@ const avatars = {
     realTellChance: 0.66,
     difficulty: "Tricky",
     message: "Smooth tells, nasty late snaps.",
-    target: { x: 50, y: 64, width: 58, height: 32 },
+    target: { x: 50, y: 65, width: 55, height: 32 },
   },
-  croc: {
-    label: "Croc",
+  alligator: {
+    label: "Alligator",
+    sprite: true,
+    atlas: "assets/alligator/alligator-3x3-clean.webp?v=9",
     unlockAt: 7600,
     multiplier: 1.5,
     floor: 1050,
@@ -125,11 +129,13 @@ const avatars = {
     tellCount: 3,
     realTellChance: 0.18,
     difficulty: "Brutal",
-    message: "Almost no warning, huge reward.",
-    target: { x: 50, y: 62, width: 64, height: 32 },
+    message: "Broad grin, tiny warning, huge reward.",
+    target: { x: 50, y: 62, width: 66, height: 34 },
   },
   alien: {
     label: "Alien",
+    sprite: true,
+    atlas: "assets/alien/alien-3x3-hd.png?v=11",
     unlockAt: 9600,
     multiplier: 1.75,
     floor: 900,
@@ -137,8 +143,8 @@ const avatars = {
     tellCount: 6,
     realTellChance: 0.5,
     difficulty: "Chaos",
-    message: "Twitchy nonsense, huge points.",
-    target: { x: 50, y: 64, width: 58, height: 32 },
+    message: "Big eyes, slippery tells, huge points.",
+    target: { x: 50, y: 65, width: 52, height: 31 },
   },
 };
 
@@ -168,6 +174,11 @@ const state = {
   soundMuted: localStorage.getItem("bite-me-muted") === "true",
   avatar: localStorage.getItem("finger-bite-avatar") || "human",
 };
+
+if (state.avatar === "croc") {
+  state.avatar = "alligator";
+  localStorage.setItem("finger-bite-avatar", state.avatar);
+}
 
 if (!avatars[state.avatar] || !isUnlocked(state.avatar)) {
   state.avatar = "human";

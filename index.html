@@ -3,22 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="theme-color" content="#fff8ef" />
+    <meta name="theme-color" content="#17151c" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Bite Me" />
     <title>Bite Me</title>
     <link rel="manifest" href="manifest.webmanifest" />
     <link rel="icon" href="assets/app-icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css?v=7" />
+    <link rel="stylesheet" href="styles.css?v=11" />
   </head>
   <body>
     <main class="game-shell">
       <header class="brand">
-        <div>
+        <div class="brand-lockup">
+          <span class="brand-kicker">The nerve game</span>
           <h1>Bite Me</h1>
           <p>Hold. Wait. Regret.</p>
         </div>
-        <span>5-round nerve test</span>
+        <span class="run-badge"><b>5</b> rounds</span>
       </header>
 
       <section class="scorebar" aria-label="Score">
@@ -134,7 +135,7 @@
           <button class="style-option" type="button" data-avatar="wolf">Wolf</button>
           <button class="style-option" type="button" data-avatar="shark">Shark</button>
           <button class="style-option" type="button" data-avatar="vampire">Vampire</button>
-          <button class="style-option" type="button" data-avatar="croc">Croc</button>
+          <button class="style-option" type="button" data-avatar="alligator">Alligator</button>
           <button class="style-option" type="button" data-avatar="alien">Alien</button>
         </div>
         <p id="message">Touch and hold the mouth. Lift your finger before the bite.</p>
@@ -142,6 +143,6 @@
       </section>
     </main>
 
-    <script src="game.js?v=7"></script>
+    <script src="game.js?v=11"></script>
   </body>
 </html>

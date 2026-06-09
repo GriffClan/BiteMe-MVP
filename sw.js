@@ -1,4 +1,4 @@
-const CACHE_NAME = "bite-me-v7";
+const CACHE_NAME = "bite-me-v11";
 const CACHE_FILES = [
   "./",
   "./index.html",
@@ -9,6 +9,9 @@ const CACHE_FILES = [
   "./assets/human/human-3x3-clean.png",
   "./assets/wolf/wolf-3x3-clean.png",
   "./assets/shark/shark-3x3-clean.png",
+  "./assets/vampire/vampire-3x3-hd.png",
+  "./assets/alligator/alligator-3x3-clean.webp",
+  "./assets/alien/alien-3x3-hd.png",
   "./assets/audio/start.wav",
   "./assets/audio/tell.wav",
   "./assets/audio/blink.wav",

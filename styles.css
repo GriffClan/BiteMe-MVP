@@ -1243,3 +1243,255 @@ button:disabled {
     gap: 8px;
   }
 }
+
+/* V8 arcade presentation */
+body {
+  background:
+    radial-gradient(circle at 12% 8%, rgba(255, 194, 71, 0.22), transparent 28rem),
+    radial-gradient(circle at 88% 20%, rgba(30, 164, 157, 0.18), transparent 30rem),
+    linear-gradient(145deg, #17151c 0%, #29222a 46%, #142c30 100%);
+  padding: 24px 0 38px;
+}
+
+.game-shell {
+  width: min(94vw, 680px);
+  gap: 12px;
+}
+
+.brand {
+  position: relative;
+  min-height: 112px;
+  align-items: center;
+  padding: 18px 22px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 8px;
+  background: #201c23;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+
+.brand::after {
+  content: "";
+  position: absolute;
+  right: 86px;
+  bottom: -43px;
+  width: 130px;
+  height: 90px;
+  border: 14px solid rgba(221, 51, 72, 0.3);
+  border-radius: 50%;
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+
+.brand-lockup {
+  position: relative;
+  z-index: 1;
+}
+
+.brand .brand-kicker {
+  display: block;
+  width: auto;
+  margin: 0 0 5px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #ffc247;
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.brand h1 {
+  color: #fff;
+  font-size: clamp(2.7rem, 10vw, 5.2rem);
+  text-shadow: 3px 3px 0 #9d2033;
+}
+
+.brand p {
+  margin-top: 7px;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.brand .run-badge {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  min-width: 76px;
+  min-height: 70px;
+  padding: 9px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  background: #dd3348;
+  color: #fff;
+  font-size: 0.72rem;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.run-badge b {
+  display: block;
+  font-size: 2rem;
+}
+
+.scorebar {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: #0f2528;
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.22);
+}
+
+.scorebar div {
+  position: relative;
+  background: #163338;
+  color: #fff;
+}
+
+.scorebar div:nth-child(2),
+.scorebar div:nth-child(5) {
+  background: #1c3d41;
+}
+
+.scorebar .label {
+  color: #8fd7d1;
+}
+
+.scorebar strong {
+  color: #fff;
+}
+
+.stage {
+  position: relative;
+  border: 5px solid #ffc247;
+  background:
+    radial-gradient(circle at 50% 22%, rgba(255, 255, 255, 0.94), transparent 34%),
+    linear-gradient(180deg, #cce4e5, #f8dfc5 63%, #b88969);
+  box-shadow:
+    0 0 0 4px #242027,
+    0 26px 60px rgba(0, 0, 0, 0.35);
+}
+
+.stage::before,
+.stage::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #fff7c9;
+  box-shadow: 0 0 13px #ffc247;
+  z-index: 12;
+}
+
+.stage::before {
+  left: 14px;
+}
+
+.stage::after {
+  right: 14px;
+}
+
+.ready-card,
+.results {
+  border: 2px solid rgba(29, 29, 36, 0.14);
+  background: rgba(255, 255, 255, 0.97);
+}
+
+.ready-card > .label,
+.results > .label {
+  color: #9d2033;
+}
+
+.ready-card button,
+.results button {
+  background: #dd3348;
+  box-shadow: 0 5px 0 #8f1f2e;
+}
+
+.controls {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: #f8f5f0;
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.28);
+}
+
+.risk {
+  border: 1px solid rgba(21, 148, 111, 0.22);
+}
+
+.unlock-status {
+  border-left: 4px solid #ffc247;
+  background: #fff3cf;
+}
+
+.unlock-meter {
+  background: rgba(15, 37, 40, 0.1);
+}
+
+.unlock-meter span {
+  background: linear-gradient(90deg, #dd3348, #ffc247, #15946f);
+}
+
+.creature-panel {
+  border-top-color: rgba(29, 29, 36, 0.15);
+}
+
+.creature-panel strong {
+  color: #9d2033;
+}
+
+.style-option {
+  border: 2px solid rgba(29, 29, 36, 0.11);
+  background: #fff;
+}
+
+.style-option:hover:not(:disabled) {
+  border-color: rgba(221, 51, 72, 0.55);
+}
+
+.style-option.active,
+.style-option.run-locked.active {
+  border-color: transparent;
+  background: #0f7371;
+  box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.16);
+}
+
+.sound-toggle {
+  background: #201c23;
+  color: #fff;
+}
+
+button.secondary {
+  background: #201c23;
+}
+
+@media (max-width: 520px) {
+  body {
+    padding-top: 8px;
+  }
+
+  .brand {
+    min-height: 88px;
+    flex-direction: row;
+    align-items: center;
+    padding: 13px 15px;
+  }
+
+  .brand h1 {
+    font-size: 2.6rem;
+  }
+
+  .brand p {
+    margin-top: 4px;
+  }
+
+  .brand .run-badge {
+    min-width: 64px;
+    min-height: 60px;
+  }
+
+  .stage {
+    border-width: 4px;
+  }
+}
