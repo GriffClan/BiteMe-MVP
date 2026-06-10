@@ -135,7 +135,7 @@ const avatars = {
   alien: {
     label: "Alien",
     sprite: true,
-    atlas: "assets/alien/alien-3x3-hd.png?v=11",
+    atlas: "assets/alien/alien-3x3-hd.png?v=12",
     unlockAt: 9600,
     multiplier: 1.75,
     floor: 900,
